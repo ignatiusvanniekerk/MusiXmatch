@@ -1,0 +1,23 @@
+
+.search-bar{
+  background-color: aliceblue;
+}
+.font-awsome-size{
+  font-size: x-large;
+}
+
+.push-right{
+  float: right;
+}
+
+.track-padding{
+  padding: 10px;
+}
+
+md-dialog-content{
+  padding: 20px;
+}
+
+md-dialog{
+  padding: 20px;
+}

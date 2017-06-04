@@ -1,0 +1,40 @@
+<div ng-controller="AlbumController" ng-cloak>
+    <div layout="column" layout-align="center center" class="search-bar">
+        <h1>Find What..?</h1>
+        <div layout="column" layout-align="center center">
+            <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
+                <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#album >{{category.type}}</md-option>
+            </md-select>
+        </div>
+    </div>
+    <md-content layout-padding>
+        <div layout="column" layout-align="center center">
+            Want the Track list..Click it..tap it..!
+        </div>
+        <md-grid-list
+            md-cols-gt-md="12" md-cols="3" md-cols-md="8"
+            md-row-height-gt-md="1:1" md-row-height="4:3"
+            md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+            <md-grid-tile
+                ng-repeat="album in albums"
+                ng-style="{
+                    'background': album.tile.color,
+                    'text-align': 'center'
+                  }"
+                ng-click="findTrackList(album.album_id)"
+                md-colspan-gt-sm="{{album.tile.colspan}}"
+                md-rowspan-gt-sm="{{album.tile.rowspan}}">
+                {{album.album_name}}
+            </md-grid-tile>
+
+        </md-grid-list>
+    </md-content>
+
+    <md-toolbar md-scroll-shrink layout-align="center center">
+        <div layout="row" layout-sm="column" >
+            <div class="md-toolbar-tools"  ng-click="showMeMore()" ng-if="data.length">Show me more</div>
+            <md-progress-circular ng-disabled="false" class="md-hue-2" md-diameter="60px" ng-if="!notLoading && !data.length"></md-progress-circular>
+        </div>
+    </md-toolbar>
+
+</div>

@@ -1,0 +1,76 @@
+<div ng-controller="ArtistController" ng-cloak>
+    <div layout="column" layout-align="center center" class="search-bar">
+        <h1>Find What..?</h1>
+        <div layout="column" layout-align="center center">
+            <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
+                <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#artist >{{category.type}}</md-option>
+            </md-select>
+        </div>
+        <div id="icon" slide-toggle=#artist ng-show="type">
+            <i class="fa fa-chevron-up" aria-hidden="true" >
+            </i><br/>close
+        </div>
+    </div>
+    <div id="artist" class="slideable" ng-show="type">
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding layout-align="center center" >
+            <div layout="row" flex="100">
+                <md-input-container flex="33" hide-xs="100"></md-input-container>
+                <md-input-container flex="40" flex-xs="100">
+                    <label>Artist Name</label>
+                    <form name="artist">
+                        <input required name="artistName" ng-model="artistName">
+                    </form>
+                    <div ng-messages="artist.artistName.$error.required">
+                        <div ng-message="required" ng-show="artist.artistName.$error.required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-content>
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding layout-align="center center">
+            <md-button class="md-raised" ng-click="submit()" ng-hide="relatedArtistFound" ng-disabled="artist.artistName.$error.required">Submit</md-button>
+            <md-button class="md-raised" ng-click="clear()" ng-show="relatedArtistFound">Clear</md-button>
+        </md-content>
+    </div>
+    <md-content layout="row" layout-wrap>
+        <h1 ng-if="error">{{error}}</h1>
+        <div flex="50" flex-gt-sm="33" flex-xs="100" ng-repeat="artist in data">
+            <md-card >
+                <md-card-title ng-style="{
+                    'background': artist.color
+                  }">
+                    <md-card-title-text>
+                        <span class="md-headline">{{artist.artist_name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-card-icon-actions>
+                            Ratting: {{artist.artist_rating}}
+                        </md-card-icon-actions>
+                        <a href="{{artist.artist_twitter_url}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </md-card-actions>
+                    <h4>Also known as:</h4>
+                    <p>
+                        <ul>
+                            <li ng-repeat="othername in artist.artist_alias" >{{othername}}</li>
+                            <li ng-if="!artist.artist_alias">No other Name</li>
+                        </ul>
+                    </p>
+                </md-card-content>
+                <md-card-content ng-style="{
+                    'background': artist.color
+                  }">
+                    <h4>Genres: {{ artist.primary_genres.music_genre.music_genre_name ? artist.primary_genres.music_genre.music_genre_name : 'No Genre Listed'}}</h4>
+                    <md-button class="md-raised md-primary" ng-click="albumFind(artist.artist_id)">Albums</md-button>
+                    <md-button class="md-raised md-primary" ng-click="relatedArtist(artist.artist_id, artist.artist_name)">Related Artist</md-button>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+    <md-toolbar md-scroll-shrink layout-align="center center">
+        <div layout="row" layout-sm="column" ng-hide="relatedArtistFound">
+            <div class="md-toolbar-tools"  ng-click="showMeMore()" ng-if="data.length">Show me more</div>
+            <md-progress-circular ng-disabled="false" class="md-hue-2" md-diameter="60px" ng-if="!notLoading && !data.length"></md-progress-circular>
+        </div>
+    </md-toolbar>
+</div>

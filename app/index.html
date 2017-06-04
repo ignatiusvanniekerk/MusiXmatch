@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width">
+    <title>Find What..?</title>
+    <link rel="icon"
+          type="image/svg"
+          href="./svg/say_what.svg">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
+    <script src="https://use.fontawesome.com/2905248ebb.js"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body class="docs-body" ng-app="myApp" ng-controller="myApp">
+
+    <div class="page-content" >
+        <div ng-view></div>
+    </div>
+
+
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-route.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-aria.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-animate.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="controllers/ArtistController/ArtistController.js"></script>
+  <script src="controllers/AlbumController/AlbumController.js"></script>
+  <script src="controllers/LyricsController/LyricsController.js"></script>
+
+  <script src="services/MusiXmatchApiArtistService.js"></script>
+  <script src="services/MusiXmatchApiAlbumService.js"></script>
+  <script src="services/MusiXmatchApiLyricsService.js"></script>
+  <script src="services/MusiXmatchApiMatcherService.js"></script>
+  <script src="services/MusiXmatchApiSnippetService.js"></script>
+  <script src="services/MusiXmatchApiTrackService.js"></script>
+  <script src="services/MusiXmatchApiService.js"></script>
+  <script src="directives/SliderDirective/SliderDirective.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+</body>
+</html>

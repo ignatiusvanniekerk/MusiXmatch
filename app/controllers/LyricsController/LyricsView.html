@@ -1,0 +1,125 @@
+<div ng-controller="LyricsController" ng-cloak>
+    <div layout="column" layout-align="center center" class="search-bar">
+        <h1>Find What..?</h1>
+        <div layout="column" layout-align="center center">
+            <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
+                <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#lyrics >{{category.type}}</md-option>
+            </md-select>
+        </div>
+        <div id="icon" slide-toggle=#lyrics ng-show="type">
+            <i class="fa fa-chevron-up" aria-hidden="true" >
+            </i><br/>close
+        </div>
+    </div>
+    <div id="lyrics" class="slideable" ng-show="type">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Filter only song with an available lyrics</label>
+                <md-select name="type"  ng-disabled="tracks.length"  ng-model="lyrics.f_has_lyrics">
+                    <md-option value="1">true</md-option>
+                    <md-option value="0">false</md-option>
+                </md-select>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search this parameter within song title, artist name and lyrics body</label>
+                <input name="q_string"  ng-disabled="tracks.length" ng-model="lyrics.q_string" />
+            </md-input-container>
+
+        </div>
+        <div layout-gt-sm="row">
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search this parameter within the artist name</label>
+                <input name="q_artist" ng-disabled="tracks.length"  ng-model="lyrics.q_artist" />
+            </md-input-container>
+
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search this parameter within the lyrics body</label>
+                <input name="q_lyrics" ng-disabled="tracks.length"  ng-model="lyrics.q_lyrics" />
+            </md-input-container>
+
+        </div>
+        <div layout-gt-sm="row">
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search this parameter within the song title</label>
+                <input name="q_track" ng-disabled="tracks.length" ng-model="lyrics.q_track" />
+            </md-input-container>
+
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search this parameter within artist name and/or song title</label>
+                <input name="q_track_artist" ng-disabled="tracks.length" ng-model="lyrics.q_track_artist" />
+            </md-input-container>
+
+        </div>
+
+            <div layout="row" flex="100">
+                <md-input-container flex="50" flex-xs="100">
+                    <label>Sort result by rating (desc or asc)</label>
+                    <md-select name="s_track_rating" ng-disabled="tracks.length" ng-model="lyrics.s_track_rating">
+                        <md-option value="desc">Descending</md-option>
+                        <md-option value="asc">Ascending</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding layout-align="center center">
+            <md-button class="md-raised" ng-click="submit()" ng-hide="tracks.length" >Submit</md-button>
+            <md-button class="md-raised" ng-click="clear()" ng-show="tracks.length">Clear</md-button>
+        </md-content>
+    </div>
+    <md-content layout="row" layout-wrap>
+        <h1 ng-if="error">{{error}}</h1>
+        <div flex="50" class='track-padding' flex-gt-sm="33" flex-xs="100" ng-repeat="track in tracks">
+            <md-divider ></md-divider>
+            <md-list ng-style="{
+                        'background': track.backGoundColour,
+                        'margin-bottom': '2%'
+                    }">
+            <md-subheader class="md-no-sticky" ng-style="{
+                        'background': track.backGoundColourHeading}">
+                        Track</md-subheader>
+            <md-list-item class="md-2-line" >
+                <i class="fa fa-user md-avatar font-awsome-size" aria-hidden="true"></i>
+                <div class="md-list-item-text">
+                    <h3> {{track.artist_name}} </h3>
+                    <p> Artist </p>
+                </div>
+            </md-list-item>
+                <md-list-item class="md-2-line" >
+                <i class="fa fa-folder-open md-avatar font-awsome-size" aria-hidden="true"></i>
+                <div class="md-list-item-text">
+                    <h3> {{track.album_name}} </h3>
+                    <p> Track Album </p>
+                </div>
+                </md-list-item>
+                <md-list-item class="md-2-line" >
+                <i class="fa fa-music md-avatar font-awsome-size" aria-hidden="true"></i>
+                <div class="md-list-item-text">
+                    <h3> {{track.track_name}} </h3>
+                    <p> Track name </p>
+                    <md-button class="md-raised md-primary push-right" ng-disabled="!(track.has_lyrics || notLoading)" ng-click="getLyrics($event, track.track_id)">
+                        {{track.has_lyrics ? 'Lyrics' : 'No Lyrics available' }}
+                    </md-button>
+                </div>
+            </md-list-item>
+            </md-list>
+        </div>
+    </md-content>
+    <md-toolbar md-scroll-shrink layout-align="center center">
+        <div layout="row" layout-sm="column">
+            <div class="md-toolbar-tools"  ng-click="showMeMore()" ng-if="tracks.length && notLoading">Show me more</div>
+            <md-progress-circular ng-disabled="false" class="md-hue-2" md-diameter="60px" ng-if="!notLoading"></md-progress-circular>
+        </div>
+    </md-toolbar>
+</div>
