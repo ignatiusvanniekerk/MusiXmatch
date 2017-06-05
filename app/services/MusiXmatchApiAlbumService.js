@@ -1,5 +1,8 @@
 myApp.factory('musiXmatchApiAlbumService', function($http, API_CATEGORY, REQUEST) {
     return {
+        /**
+         * Get the album object
+         */
         albumLookup: function(albumId) {
 
             REQUEST.url = API_CATEGORY.BASE_URL + API_CATEGORY.ALBUM + 'album_id=' + albumId;
@@ -16,6 +19,9 @@ myApp.factory('musiXmatchApiAlbumService', function($http, API_CATEGORY, REQUEST
                     });
 
         },
+        /**
+         * Get the list of song within an album
+         */
         albumArtistLookup: function(artistId) {
 
             REQUEST.url = API_CATEGORY.BASE_URL + API_CATEGORY.ARTIST_ALBUM_SEARCH + 'artist_id=' + artistId + '&s_release_date=desc';
@@ -31,6 +37,9 @@ myApp.factory('musiXmatchApiAlbumService', function($http, API_CATEGORY, REQUEST
                         return response;
                     });
         },
+        /**
+         * Get the lyrics for a track
+         */
         albumTracksLookup: function(albumId, curentPage, pageSize) {
 
             REQUEST.url = API_CATEGORY.BASE_URL + API_CATEGORY.ALBUM_TRACKS + 'album_id=' + albumId + '&page=' + curentPage + '&page_size=' + pageSize;

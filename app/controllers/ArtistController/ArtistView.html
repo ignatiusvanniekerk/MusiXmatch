@@ -1,15 +1,16 @@
 <div ng-controller="ArtistController" ng-cloak>
     <div layout="column" layout-align="center center" class="search-bar">
         <h1>Find What..?</h1>
+        <b>lyrics..artists..albums</b>
         <div layout="column" layout-align="center center">
             <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
                 <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#artist >{{category.type}}</md-option>
             </md-select>
         </div>
-        <div id="icon" slide-toggle=#artist ng-show="type">
+        <md-button class="md-fab md-mini" id="icon" slide-toggle=#artist ng-show="type">
             <i class="fa fa-chevron-up" aria-hidden="true" >
             </i><br/>close
-        </div>
+        </md-button>
     </div>
     <div id="artist" class="slideable" ng-show="type">
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding layout-align="center center" >

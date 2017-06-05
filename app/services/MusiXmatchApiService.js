@@ -1,4 +1,7 @@
 
+/**
+ * Api constants for the services including base url
+ */
 myApp.constant('API_CATEGORY',{
 
     BASE_URL: 'https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/',
@@ -31,6 +34,9 @@ myApp.constant('API_CATEGORY',{
 
 });
 
+/**
+ * REQUEST constants with api key
+ */
 myApp.constant('REQUEST',{
     method: 'GET',
     url: '' ,

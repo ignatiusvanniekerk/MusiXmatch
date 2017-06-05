@@ -1,6 +1,7 @@
 <div ng-controller="AlbumController" ng-cloak>
     <div layout="column" layout-align="center center" class="search-bar">
         <h1>Find What..?</h1>
+        <b>lyrics..artists..albums</b>
         <div layout="column" layout-align="center center">
             <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
                 <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#album >{{category.type}}</md-option>

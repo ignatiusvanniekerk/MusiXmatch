@@ -19,15 +19,30 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body class="docs-body" ng-app="myApp" ng-controller="myApp">
-
+<div style="margin: 1%;
+    padding: 1%;
+    height: auto;
+    min-height: 95%;" class="md-whiteframe-6dp">
     <div class="page-content" >
         <div ng-view></div>
     </div>
+    <div layout="row" layout-align="center center" >
+        <a href="https://github.com/ignatiusvanniekerk/MusiXmatch" target="_blank">
+            <i class="fa fa-github" style="font-size: 40px;" aria-hidden="true"></i>
+        </a>
 
+        Repo
+        <a href="https://drive.google.com/open?id=0B9g_UZs9fCOGbzZMZmRGOTlPdWc" target="_blank">
+            <i class="fa fa-google" style="font-size: 40px;" aria-hidden="true"></i>
+        </a>
+        zip
+    </div>
 
-  <!--[if lt IE 7]>
+    <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+    <![endif]-->
+
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
 

@@ -1,20 +1,21 @@
 <div ng-controller="LyricsController" ng-cloak>
     <div layout="column" layout-align="center center" class="search-bar">
         <h1>Find What..?</h1>
+        <b>lyrics..artists..albums</b>
         <div layout="column" layout-align="center center">
             <md-select placeholder="what you looking for" ng-model="type" md-on-close="changeIt(type)" style="min-width: 200px;">
                 <md-option ng-value="category.type" ng-repeat="category in categories" slide-toggle=#lyrics >{{category.type}}</md-option>
             </md-select>
         </div>
-        <div id="icon" slide-toggle=#lyrics ng-show="type">
+        <md-button class="md-fab md-mini" id="icon" slide-toggle=#lyrics ng-show="type">
             <i class="fa fa-chevron-up" aria-hidden="true" >
             </i><br/>close
-        </div>
+        </md-button>
     </div>
-    <div id="lyrics" class="slideable" ng-show="type">
+        <div id="lyrics" class="slideable" ng-show="type">
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Filter only song with an available lyrics</label>
+                <label>Only song with an available lyrics</label>
                 <md-select name="type"  ng-disabled="tracks.length"  ng-model="lyrics.f_has_lyrics">
                     <md-option value="1">true</md-option>
                     <md-option value="0">false</md-option>
@@ -24,7 +25,7 @@
                 <!-- Spacer //-->
             </div>
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Search this parameter within song title, artist name and lyrics body</label>
+                <label>Song title, artist name and lyrics body</label>
                 <input name="q_string"  ng-disabled="tracks.length" ng-model="lyrics.q_string" />
             </md-input-container>
 
@@ -32,7 +33,7 @@
         <div layout-gt-sm="row">
 
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Search this parameter within the artist name</label>
+                <label>Artist name</label>
                 <input name="q_artist" ng-disabled="tracks.length"  ng-model="lyrics.q_artist" />
             </md-input-container>
 
@@ -41,7 +42,7 @@
             </div>
 
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Search this parameter within the lyrics body</label>
+                <label>Lyrics body</label>
                 <input name="q_lyrics" ng-disabled="tracks.length"  ng-model="lyrics.q_lyrics" />
             </md-input-container>
 
@@ -49,7 +50,7 @@
         <div layout-gt-sm="row">
 
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Search this parameter within the song title</label>
+                <label>Song title</label>
                 <input name="q_track" ng-disabled="tracks.length" ng-model="lyrics.q_track" />
             </md-input-container>
 
@@ -58,7 +59,7 @@
             </div>
 
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Search this parameter within artist name and/or song title</label>
+                <label>Artist name and/or song title</label>
                 <input name="q_track_artist" ng-disabled="tracks.length" ng-model="lyrics.q_track_artist" />
             </md-input-container>
 
@@ -66,7 +67,7 @@
 
             <div layout="row" flex="100">
                 <md-input-container flex="50" flex-xs="100">
-                    <label>Sort result by rating (desc or asc)</label>
+                    <label>Sort by rating (desc or asc)</label>
                     <md-select name="s_track_rating" ng-disabled="tracks.length" ng-model="lyrics.s_track_rating">
                         <md-option value="desc">Descending</md-option>
                         <md-option value="asc">Ascending</md-option>
@@ -108,7 +109,7 @@
                 <div class="md-list-item-text">
                     <h3> {{track.track_name}} </h3>
                     <p> Track name </p>
-                    <md-button class="md-raised md-primary push-right" ng-disabled="!(track.has_lyrics || notLoading)" ng-click="getLyrics($event, track.track_id)">
+                    <md-button class="md-raised md-primary push-right" ng-disabled="!(track.has_lyrics)" ng-click="getLyrics($event, track.track_id)">
                         {{track.has_lyrics ? 'Lyrics' : 'No Lyrics available' }}
                     </md-button>
                 </div>

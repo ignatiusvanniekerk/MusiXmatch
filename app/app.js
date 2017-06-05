@@ -1,6 +1,8 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
+/**
+ * Declare app level module which depends on views, and components
+ */
 var myApp = angular.module('myApp', [
             'ngRoute',
             'ngMaterial',
@@ -8,8 +10,10 @@ var myApp = angular.module('myApp', [
             'ngSanitize'
 
         ])
+    /**
+    * config file responsible for routing to controllers and defualt fallback
+    */
 
-// config file responsible for routing to controllers and defualt fallback
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
   $routeProvider
@@ -27,13 +31,17 @@ var myApp = angular.module('myApp', [
       })
       .otherwise({redirectTo: '/artist/'});
 }])
-    .controller('myApp',['$scope','$location',function($scope, $location) {
+    /**
+     * App controller for base colours, categories, for header and navigation
+     */
+    .controller('myApp',['$scope','$location','$rootScope',function($scope, $location, $rootScope) {
 
             $scope.categories =  [
                 { id: 1, type: 'Artist' },
                 { id: 2, type: 'Tracks/Lyrics' }
             ];
 
+        $rootScope.trackList = [];
 
         $scope.changeIt = function (type) {
             $scope.type = type

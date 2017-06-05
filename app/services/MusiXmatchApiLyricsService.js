@@ -1,5 +1,13 @@
+/**
+ * Looks up a tracks lyric
+ */
+
 myApp.factory('musiXmatchApiLyricsService', function($http, API_CATEGORY, REQUEST) {
     return {
+
+        /**
+         * Get the lyrics for a track
+         */
         trackLyricsLookup: function(trackId) {
 
             REQUEST.url = API_CATEGORY.BASE_URL + API_CATEGORY.TRACK_LYRICS + 'track_id=' + trackId;

@@ -1,9 +1,6 @@
 /**
- * Created by ignatiusvanniekerk on 2017/06/02.
+ * slide search bar up and down but angular js directive
  */
-
-
-
 angular.module('angularSlideables', [])
 .directive('slideable', function () {
 
